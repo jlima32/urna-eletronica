@@ -16,15 +16,16 @@ function urnaEletronica() {
     const nomeCandidato1 = document.getElementById('candidato1').innerText;
     const nomeCandidato2 = document.getElementById('candidato2').innerText;
     const nomeCandidato3 = document.getElementById('candidato3').innerText;
+    const pin = 123456;
     
     let candidato1 = 0;
     let candidato2 = 0;
     let candidato3 = 0;
     let brancos = 0;
     let nulos = 0;
-    let encerrar = "n";
+    let encerrar = false;
     
-    while (encerrar == 'n') {
+    while (encerrar == false) {
   
     let voto = parseInt(prompt("Digite o número do candidato: "))
     const msgSucesso = "Voto computado com sucesso!"
@@ -46,9 +47,20 @@ function urnaEletronica() {
                 console.log(msgSucesso);
             }else if(voto == 0){
                 encerrar = prompt("Digite S para encerrar e N para continuar a votação");
+                if(encerrar == 's' || encerrar == 'S'){
+                    encerrar = true;
+                    pinDigitado = prompt("Digite o PIN para encerrar a votação:");
+                    while(pin != pinDigitado){
+                        pinDigitado = prompt("PIN inválido. Digite o PIN para encerrar a votação:");
+                    }
+                }else{
+                    encerrar = false;
+                }
+            }else{
+                console.log('Opção inválida');
+                voto = prompt("Digite o número do candidato: ")
             }
     }
-
 
         const totalVotos = candidato1 + candidato2 + candidato3 + brancos + nulos;
         const porcentagemCandidato1 = candidato1 / totalVotos * 100;
