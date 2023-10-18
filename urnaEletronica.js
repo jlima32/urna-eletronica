@@ -7,16 +7,35 @@ function hash(arquivo){
 }
 
 function nomeCandidatos() {
-    
-    const nomeCandidato1 = prompt("Digite o nome do primeiro candidato: ");
-    document.getElementById('opcoes').innerHTML = `Opções de voto`;
-    document.getElementById('candidato1').innerHTML = `${nomeCandidato1}`;
-    const nomeCandidato2 = prompt("Digite o nome do segundo candidato: ") 
-    document.getElementById('candidato2').innerHTML = `${nomeCandidato2}`;
-    const nomeCandidato3 = prompt("Digite o nome do terceiro candidato: ") 
-    document.getElementById('candidato3').innerHTML = `${nomeCandidato3}`;
-    document.getElementById('branco').innerHTML = `Branco`;
-    document.getElementById('nulo').innerHTML = `Nulo`;
+
+    let nomeCandidatos = false;
+
+    while(nomeCandidatos == false){
+        let nomeCandidato1 = prompt("Digite o nome do primeiro candidato: ");
+        document.getElementById('opcoes').innerHTML = `Opções de voto`;
+        document.getElementById('candidato1').innerHTML = `1. ${nomeCandidato1}`;
+        let nomeCandidato2 = prompt("Digite o nome do segundo candidato: ") 
+        document.getElementById('candidato2').innerHTML = `2. ${nomeCandidato2}`;
+        let nomeCandidato3 = prompt("Digite o nome do terceiro candidato: ") 
+        document.getElementById('candidato3').innerHTML = `3.${nomeCandidato3}`;
+        document.getElementById('branco').innerHTML = `5. Branco`;
+        document.getElementById('iniciar').innerHTML = `<button type="submit" onclick="urnaEletronica()">Iniciar Votação</button>`;
+
+        nomeOk = confirm(`Os nomes estão corretos?
+        Candidato 1: ${nomeCandidato1}
+        Candidato 2: ${nomeCandidato2}
+        Candidato 3: ${nomeCandidato3}
+        
+        Ok: Para liberar o início da votação
+        Cancelar: Para editar`)
+
+        if(nomeOk){
+            nomeCandidatos = true;
+        }else{
+            nomeCandidatos = false;
+        }
+
+    }
     
 }
 
@@ -24,7 +43,8 @@ function urnaEletronica() {
     const nomeCandidato1 = document.getElementById('candidato1').innerText;
     const nomeCandidato2 = document.getElementById('candidato2').innerText;
     const nomeCandidato3 = document.getElementById('candidato3').innerText;
-    const pin = 123456;
+    const senhaMesario = prompt("Digite uma senha para o mesário:")
+
     
     let candidato1 = 0;
     let candidato2 = 0;
@@ -50,23 +70,24 @@ function urnaEletronica() {
             }else if(voto == 5){
                 brancos++;
                 console.log(msgSucesso);
-            }else if(voto == 8){
-                nulos++;
-                console.log(msgSucesso);
             }else if(voto == 0){
                 encerrar = prompt("Digite S para encerrar e N para continuar a votação");
                 if(encerrar == 's' || encerrar == 'S'){
                     encerrar = true;
-                    pinDigitado = prompt("Digite o PIN para encerrar a votação:");
-                    while(pin != pinDigitado){
-                        pinDigitado = prompt("PIN inválido. Digite o PIN para encerrar a votação:");
+                    let senhaMesarioConfirmacao = prompt("Digite a senha do mesário para encerrar a votação: ");
+                    while(senhaMesario != senhaMesarioConfirmacao){
+                        senhaMesarioConfirmacao = prompt("Senha Inválida. Digite a senha do mesário:")
                     }
                 }else{
                     encerrar = false;
                 }
             }else{
-                console.log('Opção inválida');
-                voto = prompt("Digite o número do candidato: ")
+                votoNulo = confirm('Opção inválida, o voto será anulado\nOk: para confirmar\nCancelar: para votar novamente');
+                    if(votoNulo){
+                        nulos++;
+                        console.log(msgSucesso);
+                    }
+               
             }
     }
 
