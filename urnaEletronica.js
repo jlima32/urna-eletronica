@@ -8,7 +8,6 @@ function nomeCandidatos() {
     const nomeCandidato3 = prompt("Digite o nome do terceiro candidato: ") 
     document.getElementById('candidato3').innerHTML = `${nomeCandidato3}`;
     document.getElementById('branco').innerHTML = `Branco`;
-    document.getElementById('nulo').innerHTML = `Nulo`;
     
 }
 
@@ -42,9 +41,6 @@ function urnaEletronica() {
             }else if(voto == 5){
                 brancos++;
                 console.log(msgSucesso);
-            }else if(voto == 8){
-                nulos++;
-                console.log(msgSucesso);
             }else if(voto == 0){
                 encerrar = prompt("Digite S para encerrar e N para continuar a votação");
                 if(encerrar == 's' || encerrar == 'S'){
@@ -57,8 +53,12 @@ function urnaEletronica() {
                     encerrar = false;
                 }
             }else{
-                console.log('Opção inválida');
-                voto = prompt("Digite o número do candidato: ")
+                votoNulo = confirm('Opção inválida, o voto será anulado\nOk: para confirmar\nCancelar: para votar novamente');
+                    if(votoNulo){
+                        nulos++;
+                        console.log(msgSucesso);
+                    }
+               
             }
     }
 
