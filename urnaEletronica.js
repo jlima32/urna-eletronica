@@ -1,3 +1,7 @@
+hash('urnaEletronica.js').then(valor => {
+    console.log(valor);
+});
+
 function hash(arquivo){
     return fetch(arquivo) //abre o arquivo
     .then(response => response.text()) // retorna como string
