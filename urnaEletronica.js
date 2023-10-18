@@ -35,7 +35,6 @@ function urnaEletronica() {
     const nomeCandidato1 = document.getElementById('candidato1').innerText;
     const nomeCandidato2 = document.getElementById('candidato2').innerText;
     const nomeCandidato3 = document.getElementById('candidato3').innerText;
-    const pin = 123456;
     const senhaMesario = prompt("Digite uma senha para o mesário:")
 
     
@@ -67,13 +66,9 @@ function urnaEletronica() {
                 encerrar = prompt("Digite S para encerrar e N para continuar a votação");
                 if(encerrar == 's' || encerrar == 'S'){
                     encerrar = true;
-                    let senhaMesarioConfirmacao = prompt("Digite a senha do mesário: ");
+                    let senhaMesarioConfirmacao = prompt("Digite a senha do mesário para encerrar a votação: ");
                     while(senhaMesario != senhaMesarioConfirmacao){
                         senhaMesarioConfirmacao = prompt("Senha Inválida. Digite a senha do mesário:")
-                    }
-                    let pinConfirmacao = prompt("Digite o PIN para encerrar a votação:");
-                    while(pin != pinConfirmacao){
-                        pinConfirmacao = prompt("PIN inválido. Digite o PIN para encerrar a votação:");
                     }
                 }else{
                     encerrar = false;
