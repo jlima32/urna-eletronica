@@ -1,3 +1,11 @@
+function hash(arquivo){
+    return fetch(arquivo) //abre o arquivo
+    .then(response => response.text()) // retorna como string
+    .then(res => {
+        return sha256(res); // faz o hash
+    })
+}
+
 function nomeCandidatos() {
     
     const nomeCandidato1 = prompt("Digite o nome do primeiro candidato: ");
