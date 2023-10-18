@@ -7,8 +7,8 @@ function nomeCandidatos() {
     document.getElementById('candidato2').innerHTML = `${nomeCandidato2}`;
     const nomeCandidato3 = prompt("Digite o nome do terceiro candidato: ") 
     document.getElementById('candidato3').innerHTML = `${nomeCandidato3}`;
-    document.getElementById('branco').innerHTML = `Brancos`;
-    document.getElementById('nulo').innerHTML = `Nulos`;
+    document.getElementById('branco').innerHTML = `Branco`;
+    document.getElementById('nulo').innerHTML = `Nulo`;
     
 }
 
