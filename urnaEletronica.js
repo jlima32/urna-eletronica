@@ -10,7 +10,7 @@ function nomeCandidatos() {
         document.getElementById('candidato2').innerHTML = `2. ${nomeCandidato2}`;
         let nomeCandidato3 = prompt("Digite o nome do terceiro candidato: ") 
         document.getElementById('candidato3').innerHTML = `3.${nomeCandidato3}`;
-        document.getElementById('branco').innerHTML = `Branco`;
+        document.getElementById('branco').innerHTML = `5. Branco`;
         document.getElementById('iniciar').innerHTML = `<button type="submit" onclick="urnaEletronica()">Iniciar Votação</button>`;
 
         nomeOk = confirm(`Os nomes estão corretos?
