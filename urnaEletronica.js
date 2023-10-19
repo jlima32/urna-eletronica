@@ -1,9 +1,18 @@
 hash('urnaEletronica.js').then(valor => {
-    console.log(valor);
-});
+
+    //cria o arquivo com a hash
+    let arquivoHash = new Blob([valor], {
+        type:'text/plain'
+    })
+    let urlArquivoHash = URL.createObjectURL(arquivoHash);
+    
+    console.log(urlArquivoHash)
+    });
+
+    
 
 function hash(arquivo){
-    return fetch(arquivo) //abre o arquivo
+    return fetch(arquivo) //lê o arquivo
     .then(response => response.text()) // retorna como string
     .then(res => {
         return sha256(res); // faz o hash
@@ -94,6 +103,8 @@ function urnaEletronica() {
                
             }
     }
+
+        console.clear(); //limpa o console 
 
         const totalVotos = candidato1 + candidato2 + candidato3 + brancos + nulos;
         const porcentagemCandidato1 = candidato1 / totalVotos * 100;
