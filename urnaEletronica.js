@@ -1,22 +1,37 @@
-hash('urnaEletronica.js').then(valor => {
+//Cria o Hash quando o programa é iniciado
+criarHash('urnaEletronica.js').then(valor => {
+document.getElementById('hashInicial').innerHTML = valor;
+})  
 
-    //cria o arquivo com a hash
-    let arquivoHash = new Blob([valor], {
-        type:'text/plain'
-    })
-    let urlArquivoHash = URL.createObjectURL(arquivoHash);
-    
-    console.log(urlArquivoHash)
-    });
-
-    
-
-function hash(arquivo){
+function criarHash(arquivo){
     return fetch(arquivo) //lê o arquivo
     .then(response => response.text()) // retorna como string
     .then(res => {
         return sha256(res); // faz o hash
     })
+}
+
+function compararHash(hashInicial,hashFinal){
+    if (hashInicial == hashFinal){
+        console.log(`
+        --------------------------------------
+        Não houve alterações no código fonte.
+        VOTAÇÃO ENCERRADA
+        --------------------------------------
+        ${hashInicial}
+        ${hashFinal}
+        `)
+    }else{
+        console.log(`
+        ------------------------------------
+        ATENÇÃO
+        O CÓDIGO FONTE DA URNA FOI ALTERADO
+        VOTAÇÃO INVALIDADA
+        ------------------------------------
+        ${hashInicial}
+        ${hashFinal}
+        `)
+    }
 }
 
 function nomeCandidatos() {
@@ -83,14 +98,14 @@ function urnaEletronica() {
             }else if(voto == 5){
                 brancos++;
                 console.log(msgSucesso);
-            }else if(voto == 0){
+            }else if(voto == senhaMesario){
                 encerrar = prompt("Digite S para encerrar e N para continuar a votação");
                 if(encerrar == 's' || encerrar == 'S'){
                     encerrar = true;
-                    let senhaMesarioConfirmacao = prompt("Digite a senha do mesário para encerrar a votação: ");
-                    while(senhaMesario != senhaMesarioConfirmacao){
-                        senhaMesarioConfirmacao = prompt("Senha Inválida. Digite a senha do mesário:")
-                    }
+                    criarHash('urnaEletronica.js').then(valor => {
+                        document.getElementById('hashFinal').innerHTML = valor;
+                    })
+                    
                 }else{
                     encerrar = false;
                 }
@@ -102,10 +117,11 @@ function urnaEletronica() {
                     }
                
             }
-    }
-
+            
+        }
+        
         console.clear(); //limpa o console 
-
+        
         const totalVotos = candidato1 + candidato2 + candidato3 + brancos + nulos;
         const porcentagemCandidato1 = candidato1 / totalVotos * 100;
         const porcentagemCandidato2 = candidato2 / totalVotos * 100;
@@ -148,5 +164,17 @@ function urnaEletronica() {
         console.log(`Votos Brancos: ${brancos} || ${porcentagemBrancos.toFixed(2)}%`)
         console.log(`Votos Nulos: ${nulos} || ${porcentagemNulos.toFixed(2)}%`)
         console.log("===========================");
+        
+        encerrarVotacao();        
+    
+}
+
+
+
+function encerrarVotacao(){
+    
+    setTimeout(() => {
+        compararHash(hashInicial.innerText,hashFinal.innerText)
+      }, "1000");
     
 }
