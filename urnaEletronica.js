@@ -46,7 +46,7 @@ function nomeCandidatos() {
         let nomeCandidato2 = prompt("Digite o nome do segundo candidato: ") 
         document.getElementById('candidato2').innerHTML = `2. ${nomeCandidato2}`;
         let nomeCandidato3 = prompt("Digite o nome do terceiro candidato: ") 
-        document.getElementById('candidato3').innerHTML = `3.${nomeCandidato3}`;
+        document.getElementById('candidato3').innerHTML = `3 .${nomeCandidato3}`;
         document.getElementById('branco').innerHTML = `5. Branco`;
         document.getElementById('iniciar').innerHTML = `<button type="submit" onclick="urnaEletronica()">Iniciar Votação</button>`;
 
@@ -85,20 +85,20 @@ function urnaEletronica() {
     while (encerrar == false) {
   
     let voto = parseInt(prompt("Digite o número do candidato: "))
-    const msgSucesso = "Voto computado com sucesso!"
+
 
             if(voto == 1){
+                confirmaVoto(nomeCandidato1);
                 candidato1++;
-                console.log(msgSucesso);
             }else if(voto == 2){
+                confirmaVoto(nomeCandidato2);
                 candidato2++;
-                console.log(msgSucesso);
             }else if(voto == 3){
+                confirmaVoto(nomeCandidato3);
                 candidato3++;
-                console.log(msgSucesso);
             }else if(voto == 5){
+                confirmaVoto('Branco');
                 brancos++;
-                console.log(msgSucesso);
             }else if(voto == senhaMesario){
                 encerrar = prompt("Digite S para encerrar e N para continuar a votação");
                 if(encerrar == 's' || encerrar == 'S'){
@@ -112,11 +112,8 @@ function urnaEletronica() {
                     encerrar = false;
                 }
             }else{
-                votoNulo = confirm('Opção inválida, o voto será anulado\nOk: para confirmar\nCancelar: para votar novamente');
-                    if(votoNulo){
-                        nulos++;
-                        console.log(msgSucesso);
-                    }
+                confirmaVoto('Nulo');
+                nulos++;
                
             }
             
@@ -178,6 +175,18 @@ function urnaEletronica() {
     
 }
 
+function confirmaVoto(nomeCandidato){
+    if(confirm(`
+                Seu voto foi: ${nomeCandidato}
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    const audio = new Audio('./confirmacao.mp3');
+                    audio.play();
+                    console.log("Voto computado com sucesso!")
+
+                }
+}
 
 
 function encerrarVotacao(){
