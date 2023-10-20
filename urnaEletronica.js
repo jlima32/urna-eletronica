@@ -28,6 +28,7 @@ function compararHash(hashInicial,hashFinal){
         ${hashFinal}
         `)
     }else{
+        console.clear();
         console.log(`
         ------------------------------------
         ATENÇÃO
@@ -41,8 +42,6 @@ function compararHash(hashInicial,hashFinal){
 }
 
 function nomeCandidatos() {
-
-
 
     let nomeCandidatos = false;
 
@@ -86,9 +85,11 @@ function urnaEletronica() {
     const nomeCandidato2 = document.getElementById('candidato2').innerText;
     const nomeCandidato3 = document.getElementById('candidato3').innerText;
     const senhaMesario = prompt("Digite uma senha para o mesário:")
+    const msgSucesso = "Voto computado com sucesso";
     const dataFormatada = `${data().getDate()}/${data().getMonth()}/${data().getFullYear()}`
     const horaInicio = `${data().getHours()}:${data().getMinutes()}:${data().getSeconds()}`;
 
+    
     
     
     let candidato1 = 0;
@@ -100,21 +101,46 @@ function urnaEletronica() {
     
     while (encerrar == false) {
   
+    
     let voto = parseInt(prompt("Digite o número do candidato: "))
 
 
             if(voto == 1){
-                confirmaVoto(nomeCandidato1);
-                candidato1++;
+                if (confirm(`
+                Seu voto foi: ${nomeCandidato1}
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    candidato1++
+                    console.log(msgSucesso);
+                }
             }else if(voto == 2){
-                confirmaVoto(nomeCandidato2);
-                candidato2++;
+                if (confirm(`
+                Seu voto foi: ${nomeCandidato2}
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    candidato2++
+                    console.log(msgSucesso);
+                }
             }else if(voto == 3){
-                confirmaVoto(nomeCandidato3);
-                candidato3++;
+                if (confirm(`
+                Seu voto foi: ${nomeCandidato3}
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    candidato3++
+                    console.log(msgSucesso);
+                }
             }else if(voto == 5){
-                confirmaVoto('Branco');
-                brancos++;
+                if (confirm(`
+                Seu voto foi: Branco
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    brancos++
+                    console.log(msgSucesso);
+                }
             }else if(voto == senhaMesario){
                 encerrar = prompt("Digite S para encerrar e N para continuar a votação");
                 if(encerrar == 's' || encerrar == 'S'){
@@ -130,8 +156,14 @@ function urnaEletronica() {
                     encerrar = false;
                 }
             }else{
-                confirmaVoto('Nulo');
-                nulos++;
+                if (confirm(`
+                Seu voto foi: Nulo
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    nulos++
+                    console.log(msgSucesso);
+                }
                
             }
             
@@ -193,21 +225,6 @@ function urnaEletronica() {
 
     
 }
-
-function confirmaVoto(nomeCandidato){
-    if(confirm(`
-                Seu voto foi: ${nomeCandidato}
-                Ok: para confirmar
-                Cancelar: para votar novamente
-                `)){
-                    const audio = new Audio('./confirmacao.mp3');
-                    
-                    audio.play();
-                    console.log("Voto computado com sucesso!")
-
-                }
-}
-
 
 function encerrarVotacao(){
     
