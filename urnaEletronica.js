@@ -75,7 +75,7 @@ function urnaEletronica() {
     const nomeCandidato2 = document.getElementById('candidato2').innerText;
     const nomeCandidato3 = document.getElementById('candidato3').innerText;
     const senhaMesario = prompt("Digite uma senha para o mesário:")
-    const audio = new Audio('./confirmacao.mp3');
+
 
     
     
@@ -94,19 +94,15 @@ function urnaEletronica() {
             if(voto == 1){
                 confirmaVoto(nomeCandidato1);
                 candidato1++;
-                audio.play();
             }else if(voto == 2){
                 confirmaVoto(nomeCandidato2);
                 candidato2++;
-                audio.play();
             }else if(voto == 3){
                 confirmaVoto(nomeCandidato3);
                 candidato3++;
-                audio.play();
             }else if(voto == 5){
                 confirmaVoto('Branco');
                 brancos++;
-                audio.play();
             }else if(voto == senhaMesario){
                 encerrar = prompt("Digite S para encerrar e N para continuar a votação");
                 if(encerrar == 's' || encerrar == 'S'){
@@ -124,7 +120,6 @@ function urnaEletronica() {
             }else{
                 confirmaVoto('Nulo');
                 nulos++;
-                audio.play();
                
             }
             
@@ -191,6 +186,8 @@ function confirmaVoto(nomeCandidato){
                 Ok: para confirmar
                 Cancelar: para votar novamente
                 `)){
+                    const audio = new Audio('./confirmacao.mp3');
+                    audio.play();
                     console.log("Voto computado com sucesso!")
 
                 }
