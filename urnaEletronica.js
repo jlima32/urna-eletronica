@@ -1,4 +1,4 @@
-//teste Hash!
+//teste Hash! (2)
 //Cria o Hash quando o programa é iniciado
 criarHash('urnaEletronica.js').then(valor => {
 document.getElementById('hashInicial').innerHTML = valor;
