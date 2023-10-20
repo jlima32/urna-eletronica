@@ -103,6 +103,7 @@ function urnaEletronica() {
                 encerrar = prompt("Digite S para encerrar e N para continuar a votação");
                 if(encerrar == 's' || encerrar == 'S'){
                     encerrar = true;
+                    //Cria o Hash quando o a votação é encerrada
                     criarHash('urnaEletronica.js').then(valor => {
                         document.getElementById('hashFinal').innerHTML = valor;
                     })
@@ -166,7 +167,14 @@ function urnaEletronica() {
         console.log(`Votos Nulos: ${nulos} || ${porcentagemNulos.toFixed(2)}%`)
         console.log("===========================");
         
-        encerrarVotacao();        
+        console.log(`
+        -------------------------------------
+        VERIFICANDO INTEGRIDADE DA URNA ...
+        -------------------------------------
+        `)
+
+        encerrarVotacao();
+
     
 }
 
