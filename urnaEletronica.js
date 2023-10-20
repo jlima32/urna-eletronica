@@ -4,6 +4,11 @@ criarHash('urnaEletronica.js').then(valor => {
 document.getElementById('hashInicial').innerHTML = valor;
 })  
 
+function data(){
+    const data = new Date();
+    return data;
+}
+
 function criarHash(arquivo){
     return fetch(arquivo) //lê o arquivo
     .then(response => response.text()) // retorna como string
@@ -50,7 +55,7 @@ function nomeCandidatos() {
         let nomeCandidato3 = prompt("Digite o nome do terceiro candidato: ") 
         document.getElementById('candidato3').innerHTML = `3 .${nomeCandidato3}`;
         document.getElementById('branco').innerHTML = `5. Branco`;
-        document.getElementById('iniciar').innerHTML = `<button type="submit" onclick="urnaEletronica()">Iniciar Votação</button>`;
+        // document.getElementById('iniciar').innerHTML = `<button type="submit" onclick="urnaEletronica()">Iniciar Votação</button>`;
 
         nomeOk = confirm(`Os nomes estão corretos?
         Candidato 1: ${nomeCandidato1}
@@ -67,6 +72,12 @@ function nomeCandidatos() {
         }
 
     }
+       
+    setTimeout(() => {
+        urnaEletronica()
+      }, "400");
+
+    
     
 }
 
@@ -75,7 +86,8 @@ function urnaEletronica() {
     const nomeCandidato2 = document.getElementById('candidato2').innerText;
     const nomeCandidato3 = document.getElementById('candidato3').innerText;
     const senhaMesario = prompt("Digite uma senha para o mesário:")
-
+    const dataFormatada = `${data().getDate()}/${data().getMonth()}/${data().getFullYear()}`
+    const horaInicio = `${data().getHours()}:${data().getMinutes()}:${data().getSeconds()}`;
 
     
     
@@ -134,10 +146,12 @@ function urnaEletronica() {
         const porcentagemNulos = nulos / totalVotos * 100;
         
         console.log("============================");
-        console.log("Votação encerrada!");
+        console.log("====== BOLETIM DE URNA =====");
         console.log("============================");
-
-
+        console.log(`Data: ${dataFormatada}`);
+        console.log("============================");
+        console.log(`Horário em que a votação foi iniciada: ${horaInicio}`);
+        console.log(`Horário final da votação: ${data().getHours()}:${data().getMinutes()}:${data().getSeconds()}`);
         if(candidato1 > candidato2 && candidato1 > candidato3){
             const candidatoVencedor = candidato1;
             const totalVencedorBrancos = candidatoVencedor + brancos;
@@ -187,6 +201,7 @@ function confirmaVoto(nomeCandidato){
                 Cancelar: para votar novamente
                 `)){
                     const audio = new Audio('./confirmacao.mp3');
+                    
                     audio.play();
                     console.log("Voto computado com sucesso!")
 
