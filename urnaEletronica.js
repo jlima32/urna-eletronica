@@ -37,6 +37,8 @@ function compararHash(hashInicial,hashFinal){
 
 function nomeCandidatos() {
 
+
+
     let nomeCandidatos = false;
 
     while(nomeCandidatos == false){
@@ -74,6 +76,7 @@ function urnaEletronica() {
     const nomeCandidato3 = document.getElementById('candidato3').innerText;
     const senhaMesario = prompt("Digite uma senha para o mesário:")
     const audio = new Audio('./confirmacao.mp3');
+
     
     
     let candidato1 = 0;
@@ -111,7 +114,9 @@ function urnaEletronica() {
                     //Cria o Hash quando o a votação é encerrada
                     criarHash('urnaEletronica.js').then(valor => {
                         document.getElementById('hashFinal').innerHTML = valor;
+                        
                     })
+
                     
                 }else{
                     encerrar = false;
@@ -125,8 +130,7 @@ function urnaEletronica() {
             
         }
         
-        console.clear(); //limpa o console 
-        
+        console.clear(); //limpa o console
         const totalVotos = candidato1 + candidato2 + candidato3 + brancos + nulos;
         const porcentagemCandidato1 = candidato1 / totalVotos * 100;
         const porcentagemCandidato2 = candidato2 / totalVotos * 100;
@@ -175,7 +179,7 @@ function urnaEletronica() {
         VERIFICANDO INTEGRIDADE DA URNA ...
         -------------------------------------
         `)
-
+        
         encerrarVotacao();
 
     
@@ -198,5 +202,6 @@ function encerrarVotacao(){
     setTimeout(() => {
         compararHash(hashInicial.innerText,hashFinal.innerText)
       }, "1000");
+
     
 }
