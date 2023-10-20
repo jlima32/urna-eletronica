@@ -181,8 +181,7 @@ function confirmaVoto(nomeCandidato){
                 Ok: para confirmar
                 Cancelar: para votar novamente
                 `)){
-                    const audio = new Audio('./confirmacao.mp3');
-                    audio.play();
+                    new Audio('./confirmacao.mp3').play();
                     console.log("Voto computado com sucesso!")
 
                 }
