@@ -1,96 +1,12 @@
-//teste Hash! (2)
-//Cria o Hash quando o programa é iniciado
-criarHash('urnaEletronica.js').then(valor => {
-document.getElementById('hashInicial').innerHTML = valor;
-})  
-
-function data(){
-    const data = new Date();
-    return data;
-}
-
-function criarHash(arquivo){
-    return fetch(arquivo) //lê o arquivo
-    .then(response => response.text()) // retorna como string
-    .then(res => {
-        return sha256(res); // faz o hash
-    })
-}
-
-function compararHash(hashInicial,hashFinal){
-    if (hashInicial == hashFinal){
-        console.log(`
-        --------------------------------------
-        Não houve alterações no código fonte.
-        VOTAÇÃO ENCERRADA
-        --------------------------------------
-        ${hashInicial}
-        ${hashFinal}
-        `)
-    }else{
-        console.clear();
-        console.log(`
-        ------------------------------------
-        ATENÇÃO
-        O CÓDIGO FONTE DA URNA FOI ALTERADO
-        VOTAÇÃO INVALIDADA
-        ------------------------------------
-        ${hashInicial}
-        ${hashFinal}
-        `)
-    }
-}
-
-function nomeCandidatos() {
-
-    let nomeCandidatos = false;
-
-    while(nomeCandidatos == false){
-        let nomeCandidato1 = prompt("Digite o nome do primeiro candidato: ");
-        document.getElementById('opcoes').innerHTML = `Opções de voto`;
-        document.getElementById('candidato1').innerHTML = `1. ${nomeCandidato1}`;
-        let nomeCandidato2 = prompt("Digite o nome do segundo candidato: ") 
-        document.getElementById('candidato2').innerHTML = `2. ${nomeCandidato2}`;
-        let nomeCandidato3 = prompt("Digite o nome do terceiro candidato: ") 
-        document.getElementById('candidato3').innerHTML = `3 .${nomeCandidato3}`;
-        document.getElementById('branco').innerHTML = `5. Branco`;
-        // document.getElementById('iniciar').innerHTML = `<button type="submit" onclick="urnaEletronica()">Iniciar Votação</button>`;
-
-        nomeOk = confirm(`Os nomes estão corretos?
-        Candidato 1: ${nomeCandidato1}
-        Candidato 2: ${nomeCandidato2}
-        Candidato 3: ${nomeCandidato3}
-        
-        Ok: Para liberar o início da votação
-        Cancelar: Para editar`)
-
-        if(nomeOk){
-            nomeCandidatos = true;
-        }else{
-            nomeCandidatos = false;
-        }
-
-    }
-       
-    setTimeout(() => {
-        urnaEletronica()
-      }, "400");
-
-    
-    
-}
-
 function urnaEletronica() {
     const nomeCandidato1 = document.getElementById('candidato1').innerText;
     const nomeCandidato2 = document.getElementById('candidato2').innerText;
     const nomeCandidato3 = document.getElementById('candidato3').innerText;
     const senhaMesario = prompt("Digite uma senha para o mesário:")
     const msgSucesso = "Voto computado com sucesso";
-    const dataFormatada = `${data().getDate()}/${data().getMonth()}/${data().getFullYear()}`
+    const dataFormatada = `${data().getDate()}/${data().getMonth()+1}/${data().getFullYear()}`
     const horaInicio = `${data().getHours()}:${data().getMinutes()}:${data().getSeconds()}`;
 
-    
-    
     
     let candidato1 = 0;
     let candidato2 = 0;
@@ -226,11 +142,88 @@ function urnaEletronica() {
     
 }
 
-function encerrarVotacao(){
+criarHash('urnaEletronica.js').then(valor => {
+document.getElementById('hashInicial').innerHTML = valor;
+})  
+
+function data(){
+    const data = new Date();
+    return data;
+}
+
+function criarHash(arquivo){
+    return fetch(arquivo) //lê o arquivo
+    .then(response => response.text()) // retorna como string
+    .then(res => {
+        return sha256(res); // faz o hash
+    })
+}
+
+function compararHash(hashInicial,hashFinal){
+    if (hashInicial == hashFinal){
+        console.log(`
+        --------------------------------------
+        Não houve alterações no código fonte.
+        VOTAÇÃO ENCERRADA
+        --------------------------------------
+        ${hashInicial}
+        ${hashFinal}
+        `)
+    }else{
+        console.clear();
+        console.log(`
+        ------------------------------------
+        ATENÇÃO
+        O CÓDIGO FONTE DA URNA FOI ALTERADO
+        VOTAÇÃO INVALIDADA
+        ------------------------------------
+        ${hashInicial}
+        ${hashFinal}
+        `)
+    }
+}
+
+function nomeCandidatos() {
+
+    let nomeCandidatos = false;
+
+    while(nomeCandidatos == false){
+        let nomeCandidato1 = prompt("Digite o nome do primeiro candidato: ");
+        document.getElementById('opcoes').innerHTML = `Opções de voto`;
+        document.getElementById('candidato1').innerHTML = `1. ${nomeCandidato1}`;
+        let nomeCandidato2 = prompt("Digite o nome do segundo candidato: ") 
+        document.getElementById('candidato2').innerHTML = `2. ${nomeCandidato2}`;
+        let nomeCandidato3 = prompt("Digite o nome do terceiro candidato: ") 
+        document.getElementById('candidato3').innerHTML = `3 .${nomeCandidato3}`;
+        document.getElementById('branco').innerHTML = `5. Branco`;
+        // document.getElementById('iniciar').innerHTML = `<button type="submit" onclick="urnaEletronica()">Iniciar Votação</button>`;
+
+        nomeOk = confirm(`Os nomes estão corretos?
+        Candidato 1: ${nomeCandidato1}
+        Candidato 2: ${nomeCandidato2}
+        Candidato 3: ${nomeCandidato3}
+        
+        Ok: Para liberar o início da votação
+        Cancelar: Para editar`)
+
+        if(nomeOk){
+            nomeCandidatos = true;
+        }else{
+            nomeCandidatos = false;
+        }
+
+    }
+       
+    setTimeout(() => {
+        urnaEletronica()
+      }, "400");
+
     
+    
+}
+
+function encerrarVotacao(){
     setTimeout(() => {
         compararHash(hashInicial.innerText,hashFinal.innerText)
       }, "1000");
-
-    
 }
