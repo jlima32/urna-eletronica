@@ -5,9 +5,39 @@ function urnaEletronica() {
     const senhaMesario = prompt("Digite uma senha para o mesário:")
     const msgSucesso = "Voto computado com sucesso";
     const dataFormatada = `${data().getDate()}/${data().getMonth()+1}/${data().getFullYear()}`
-    const horaInicio = `${data().getHours()}:${data().getMinutes()}:${data().getSeconds()}`;
+    
+    const hora = data().getHours();
+    const minutos = data().getMinutes();
+    const segundos = data().getSeconds();
+
+    let horaFormatada;
+    let minutoFormatado;
+    let segundoFormatado;
+    
+    if (hora < 10){
+        horaFormatada = `0${hora}`
+    }else{
+        horaFormatada = hora
+    }
+
+    if (minutos < 10){
+        minutoFormatado = `0${minutos}`
+    }else{
+        minutoFormatado = minutos
+    }
+
+    if (segundos < 10){
+        segundoFormatado = `0${segundos}`
+    }else{
+        segundoFormatado = segundos
+    }
+
+
+    const horaInicio = `${horaFormatada}:${minutoFormatado}:${segundoFormatado}`
+ 
 
     
+
     let candidato1 = 0;
     let candidato2 = 0;
     let candidato3 = 0;
@@ -92,6 +122,7 @@ function urnaEletronica() {
         const porcentagemCandidato3 = candidato3 / totalVotos * 100;
         const porcentagemBrancos = brancos / totalVotos * 100;
         const porcentagemNulos = nulos / totalVotos * 100;
+        const horaFinal = `${horaFormatada}:${minutoFormatado}:${segundoFormatado}`
         
         console.log("============================");
         console.log("====== BOLETIM DE URNA =====");
@@ -99,7 +130,7 @@ function urnaEletronica() {
         console.log(`Data: ${dataFormatada}`);
         console.log("============================");
         console.log(`Horário em que a votação foi iniciada: ${horaInicio}`);
-        console.log(`Horário final da votação: ${data().getHours()}:${data().getMinutes()}:${data().getSeconds()}`);
+        console.log(`Horário final da votação: ${horaFinal}`);
         if(candidato1 > candidato2 && candidato1 > candidato3){
             const candidatoVencedor = candidato1;
             const totalVencedorBrancos = candidatoVencedor + brancos;
