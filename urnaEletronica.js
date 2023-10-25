@@ -99,7 +99,6 @@ function urnaEletronica() {
         console.log("====== BOLETIM DE URNA =====");
         console.log("============================");
         console.log(`Horário em que a votação foi iniciada: ${horaInicio}`);
-        console.log(`Horário final da votação: ${data().toLocaleString()}`);
         console.log("===========================");
         if(candidato1 > candidato2 && candidato1 > candidato3){
             const candidatoVencedor = candidato1;
@@ -121,6 +120,7 @@ function urnaEletronica() {
         }
 
 
+        
         console.log("============================");   
         console.log("Resultado final da votação");
         console.log(`Total de votos: ${totalVotos}`);
@@ -130,6 +130,8 @@ function urnaEletronica() {
         console.log(`Votos ${nomeCandidato3}: ${candidato3} || ${porcentagemCandidato3.toFixed(2)}%`)
         console.log(`Votos Brancos: ${brancos} || ${porcentagemBrancos.toFixed(2)}%`)
         console.log(`Votos Nulos: ${nulos} || ${porcentagemNulos.toFixed(2)}%`)
+        console.log("===========================");
+        console.log(`Horário final da votação: ${data().toLocaleString()}`);
         console.log("===========================");
         
         console.log(`
