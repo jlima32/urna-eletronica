@@ -189,42 +189,23 @@ function compararHash(hashInicial,hashFinal){
 
 function nomeCandidatos() {
 
-    let nomeCandidatos = false;
-
-    while(nomeCandidatos == false){
-        let nomeCandidato1 = prompt("Digite o nome do primeiro candidato: ");
-        document.getElementById('opcoes').innerHTML = `Opções de voto`;
-        document.getElementById('candidato1').innerHTML = `1. ${nomeCandidato1}`;
-        let nomeCandidato2 = prompt("Digite o nome do segundo candidato: ") 
-        document.getElementById('candidato2').innerHTML = `2. ${nomeCandidato2}`;
-        let nomeCandidato3 = prompt("Digite o nome do terceiro candidato: ") 
-        document.getElementById('candidato3').innerHTML = `3 .${nomeCandidato3}`;
-        document.getElementById('branco').innerHTML = `5. Branco`;
-        // document.getElementById('iniciar').innerHTML = `<button type="submit" onclick="urnaEletronica()">Iniciar Votação</button>`;
-
-        nomeOk = confirm(`Os nomes estão corretos?
-        Candidato 1: ${nomeCandidato1}
-        Candidato 2: ${nomeCandidato2}
-        Candidato 3: ${nomeCandidato3}
+let candidatos = [
+    ['Carlos', 'Silva', 'Santos', 'Lima','João','Branco'],
+    [11,13,27,48,50,'00']
+   ]
+   
+   for (let i = 0; i < candidatos[0].length; i++) {
+    console.log(candidatos[0][i]);
+    for (let j = 0; j < 1; j++) {
+        console.log(candidatos[1][i]);
         
-        Ok: Para liberar o início da votação
-        Cancelar: Para editar`)
-
-        if(nomeOk){
-            nomeCandidatos = true;
-        }else{
-            nomeCandidatos = false;
-        }
-
     }
-       
-    setTimeout(() => {
-        urnaEletronica()
-      }, "400");
+    
+   }
 
-    
-    
 }
+
+
 
 function encerrarVotacao(){
     setTimeout(() => {
