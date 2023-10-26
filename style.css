@@ -6,3 +6,12 @@ button {
 #hashInicial, #hashFinal  {
     display: none;
 }
+
+table {
+    border: 1px solid #000;
+    width: 300px;
+    text-align: center;
+}
+thead{
+    background-color: #858484;
+}

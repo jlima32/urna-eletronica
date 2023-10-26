@@ -145,6 +145,29 @@ function urnaEletronica() {
     
 }
 
+
+nomeCandidatos();
+
+function nomeCandidatos() {
+
+let rowCandidatos = document.querySelector('#table>tbody');
+
+    let candidatos = [
+        ['Carlos', 'Silva', 'Santos', 'Lima','João','Voto em Branco'],
+        [11,13,27,48,50,'00']
+       ]
+       
+       for (let i = 0; i < candidatos[0].length; i++) {
+        rowCandidatos.innerHTML += `
+        <tr>
+           <td>${candidatos[1][i]}</td>
+           <td>${candidatos[0][i]}</td>
+        </tr>`;
+        
+       }
+    
+    }
+
 criarHash('urnaEletronica.js').then(valor => {
 document.getElementById('hashInicial').innerHTML = valor;
 })  
@@ -186,26 +209,6 @@ function compararHash(hashInicial,hashFinal){
         `)
     }
 }
-
-function nomeCandidatos() {
-
-let candidatos = [
-    ['Carlos', 'Silva', 'Santos', 'Lima','João','Branco'],
-    [11,13,27,48,50,'00']
-   ]
-   
-   for (let i = 0; i < candidatos[0].length; i++) {
-    console.log(candidatos[0][i]);
-    for (let j = 0; j < 1; j++) {
-        console.log(candidatos[1][i]);
-        
-    }
-    
-   }
-
-}
-
-
 
 function encerrarVotacao(){
     setTimeout(() => {
