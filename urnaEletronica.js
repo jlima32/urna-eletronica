@@ -153,19 +153,17 @@ function nomeCandidatos() {
 let rowCandidatos = document.querySelector('#table>tbody');
 
     let candidatos = [
-        ['Carlos', 'Silva', 'Santos', 'Lima','João','Voto em Branco'],
+        ['Carlos', 'Silva', 'Santos', 'Lima','João','Voto em Branco',],
         [11,13,27,48,50,'00']
-       ]
+    ];
        
        for (let i = 0; i < candidatos[0].length; i++) {
         rowCandidatos.innerHTML += `
         <tr>
-           <td>${candidatos[1][i]}</td>
+           <td class="codigo">${candidatos[1][i]}</td>
            <td>${candidatos[0][i]}</td>
         </tr>`;
-        
        }
-    
     }
 
 criarHash('urnaEletronica.js').then(valor => {
