@@ -158,7 +158,8 @@ let rowCandidatos = document.querySelector('#table>tbody');
       [44,'Lima'],
       [88,'Santos'],
       [77,'Aragão'],
-      [99,'Joaquim']
+      [99,'Joaquim'],
+      ['00','Voto em Branco']
     ]
        
     for (let i = 0; i < candidatos.length; i++) {
