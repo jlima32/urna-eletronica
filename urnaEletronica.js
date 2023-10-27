@@ -1,7 +1,27 @@
 function urnaEletronica() {
-    const nomeCandidato1 = document.getElementById('candidato1').innerText;
-    const nomeCandidato2 = document.getElementById('candidato2').innerText;
-    const nomeCandidato3 = document.getElementById('candidato3').innerText;
+
+
+
+    // let rowCandidatos = document.getElementById('candidatos');
+
+    let candidatos = 
+    [
+    [31,'Carlos'],
+    [44,'Lima'],
+    [88,'Santos'],
+    [77,'Aragão'],
+    [99,'Joaquim'],
+    ['00','Voto em Branco']
+    ]
+    
+    for (let i = 0; i < candidatos.length; i++) {
+        // rowCandidatos.innerHTML += `
+        // <p>${candidatos[i][0]} - ${candidatos[i][1]}</p>`;
+        nomeCandidato1 = candidatos[0][1];
+        nomeCandidato2 = candidatos[1][1];
+        nomeCandidato3 = candidatos[2][1];
+        }
+    
     const senhaMesario = prompt("Digite uma senha para o mesário:")
     const msgSucesso = "Voto computado com sucesso";
     const horaInicio = data();
@@ -146,30 +166,6 @@ function urnaEletronica() {
 }
 
 
-nomeCandidatos();
-
-function nomeCandidatos() {
-
-let rowCandidatos = document.querySelector('#table>tbody');
-
-    let candidatos = 
-    [
-      [31,'Carlos'],
-      [44,'Lima'],
-      [88,'Santos'],
-      [77,'Aragão'],
-      [99,'Joaquim'],
-      ['00','Voto em Branco']
-    ]
-       
-    for (let i = 0; i < candidatos.length; i++) {
-        rowCandidatos.innerHTML += `
-        <tr>
-           <td class="codigo">${candidatos[i][0]}</td>
-           <td>${candidatos[i][1]}</td>
-        </tr>`;
-       }
-    }
 
 criarHash('urnaEletronica.js').then(valor => {
 document.getElementById('hashInicial').innerHTML = valor;
