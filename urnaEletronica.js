@@ -152,16 +152,20 @@ function nomeCandidatos() {
 
 let rowCandidatos = document.querySelector('#table>tbody');
 
-    let candidatos = [
-        ['Carlos', 'Silva', 'Santos', 'Lima','João','Voto em Branco',],
-        [11,13,27,48,50,'00']
-    ];
+    let candidatos = 
+    [
+      [31,'Carlos'],
+      [44,'Lima'],
+      [88,'Santos'],
+      [77,'Aragão'],
+      [99,'Joaquim']
+    ]
        
-       for (let i = 0; i < candidatos[0].length; i++) {
+    for (let i = 0; i < candidatos.length; i++) {
         rowCandidatos.innerHTML += `
         <tr>
-           <td class="codigo">${candidatos[1][i]}</td>
-           <td>${candidatos[0][i]}</td>
+           <td class="codigo">${candidatos[i][0]}</td>
+           <td>${candidatos[i][1]}</td>
         </tr>`;
        }
     }
