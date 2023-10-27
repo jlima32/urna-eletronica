@@ -17,11 +17,8 @@ function urnaEletronica() {
     for (let i = 0; i < candidatos.length; i++) {
         // rowCandidatos.innerHTML += `
         // <p>${candidatos[i][0]} - ${candidatos[i][1]}</p>`;
-        nomeCandidato1 = candidatos[0][1];
-        nomeCandidato2 = candidatos[1][1];
-        nomeCandidato3 = candidatos[2][1];
+        dadosCandidatos = candidatos;
         }
-    
     const senhaMesario = prompt("Digite uma senha para o mesário:")
     const msgSucesso = "Voto computado com sucesso";
     const horaInicio = data();
@@ -32,6 +29,8 @@ function urnaEletronica() {
     let candidato1 = 0;
     let candidato2 = 0;
     let candidato3 = 0;
+    let candidato4 = 0;
+    let candidato5 = 0;
     let brancos = 0;
     let nulos = 0;
     let encerrar = false;
@@ -42,34 +41,52 @@ function urnaEletronica() {
     let voto = parseInt(prompt("Digite o número do candidato: "))
 
 
-            if(voto == 1){
+            if(voto == dadosCandidatos[0][0]){
                 if (confirm(`
-                Seu voto foi: ${nomeCandidato1}
+                Seu voto foi: ${dadosCandidatos[0][1]}
                 Ok: para confirmar
                 Cancelar: para votar novamente
                 `)){
                     candidato1++
                     console.log(msgSucesso);
                 }
-            }else if(voto == 2){
+            }else if(voto == dadosCandidatos[1][0]){
                 if (confirm(`
-                Seu voto foi: ${nomeCandidato2}
+                Seu voto foi: ${dadosCandidatos[1][1]}
                 Ok: para confirmar
                 Cancelar: para votar novamente
                 `)){
                     candidato2++
                     console.log(msgSucesso);
                 }
-            }else if(voto == 3){
+            }else if(voto == dadosCandidatos[2][0]){
                 if (confirm(`
-                Seu voto foi: ${nomeCandidato3}
+                Seu voto foi: ${dadosCandidatos[2][1]}
                 Ok: para confirmar
                 Cancelar: para votar novamente
                 `)){
                     candidato3++
                     console.log(msgSucesso);
                 }
-            }else if(voto == 5){
+            }else if(voto == dadosCandidatos[3][0]){
+                if (confirm(`
+                Seu voto foi: ${dadosCandidatos[3][1]}
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    candidato4++
+                    console.log(msgSucesso);
+                }
+            }else if(voto == dadosCandidatos[4][0]){
+                if (confirm(`
+                Seu voto foi: ${dadosCandidatos[4][1]}
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    candidato5++
+                    console.log(msgSucesso);
+                }
+            }else if(voto == '00'){
                 if (confirm(`
                 Seu voto foi: Branco
                 Ok: para confirmar
@@ -107,13 +124,14 @@ function urnaEletronica() {
         }
         
         console.clear(); //limpa o console
-        const totalVotos = candidato1 + candidato2 + candidato3 + brancos + nulos;
+        const totalVotos = candidato1 + candidato2 + candidato3 + candidato4 + candidato5 + brancos + nulos;
         const porcentagemCandidato1 = candidato1 / totalVotos * 100;
         const porcentagemCandidato2 = candidato2 / totalVotos * 100;
         const porcentagemCandidato3 = candidato3 / totalVotos * 100;
+        const porcentagemCandidato4 = candidato4 / totalVotos * 100;
+        const porcentagemCandidato5 = candidato5 / totalVotos * 100;
         const porcentagemBrancos = brancos / totalVotos * 100;
         const porcentagemNulos = nulos / totalVotos * 100;
-        
         
         console.log("============================");
         console.log("====== BOLETIM DE URNA =====");
@@ -124,17 +142,17 @@ function urnaEletronica() {
             const candidatoVencedor = candidato1;
             const totalVencedorBrancos = candidatoVencedor + brancos;
             const porcentagemVencedorBrancos = (totalVencedorBrancos / totalVotos) * 100;
-            console.log(`O vencedor foi o candidato ${nomeCandidato1} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
+            console.log(`O vencedor foi o candidato ${dadosCandidatos[0][1]} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
         }else if(candidato2 > candidato1 && candidato2 > candidato3){
             const candidatoVencedor = candidato2;
             const totalVencedorBrancos = candidatoVencedor + brancos;
             const porcentagemVencedorBrancos = (totalVencedorBrancos / totalVotos) * 100;
-            console.log(`O vencedor foi o candidato ${nomeCandidato2} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
+            console.log(`O vencedor foi o candidato ${dadosCandidatos[1][1]} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
         }else if(candidato3 > candidato1 && candidato3 > candidato2){
             const candidatoVencedor = candidato3;
             const totalVencedorBrancos = candidatoVencedor + brancos;
             const porcentagemVencedorBrancos = (totalVencedorBrancos / totalVotos) * 100;
-            console.log(`O vencedor foi o candidato ${nomeCandidato3} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
+            console.log(`O vencedor foi o candidato ${dadosCandidatos[2][1]} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
         }else{
             console.log(`A votação terminou empatada`);
         }
@@ -145,9 +163,11 @@ function urnaEletronica() {
         console.log("Resultado final da votação");
         console.log(`Total de votos: ${totalVotos}`);
         console.log("===========================");
-        console.log(`Votos ${nomeCandidato1}: ${candidato1} || ${porcentagemCandidato1.toFixed(2)}%`)
-        console.log(`Votos ${nomeCandidato2}: ${candidato2} || ${porcentagemCandidato2.toFixed(2)}%`)
-        console.log(`Votos ${nomeCandidato3}: ${candidato3} || ${porcentagemCandidato3.toFixed(2)}%`)
+        console.log(`Votos ${dadosCandidatos[0][1]}: ${candidato1} || ${porcentagemCandidato1.toFixed(2)}%`)
+        console.log(`Votos ${dadosCandidatos[1][1]}: ${candidato2} || ${porcentagemCandidato2.toFixed(2)}%`)
+        console.log(`Votos ${dadosCandidatos[2][1]}: ${candidato3} || ${porcentagemCandidato3.toFixed(2)}%`)
+        console.log(`Votos ${dadosCandidatos[3][1]}: ${candidato4} || ${porcentagemCandidato4.toFixed(2)}%`)
+        console.log(`Votos ${dadosCandidatos[4][1]}: ${candidato5} || ${porcentagemCandidato5.toFixed(2)}%`)
         console.log(`Votos Brancos: ${brancos} || ${porcentagemBrancos.toFixed(2)}%`)
         console.log(`Votos Nulos: ${nulos} || ${porcentagemNulos.toFixed(2)}%`)
         console.log("===========================");
