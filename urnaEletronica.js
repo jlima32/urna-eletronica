@@ -203,15 +203,18 @@ function verificarUrna(){
         .then(conteudo => conteudo.text())
         .then(hashVerificado => {
             if (hashUrnaAtual == hashVerificado){
-                console.log('ok')
-                console.log(hashUrnaAtual)
-                console.log('-----')
-                console.log(hashVerificado)
+                console.log(`
+        --------------------------------------
+        Não houve alterações no código fonte.
+        VOTAÇÃO ENCERRADA
+        --------------------------------------
+        `)
             }else{
-                console.log(hashUrnaAtual)
-                console.log('-----')
-                
-                console.log(hashVerificado)
+                console.log(`
+        --------------------------------------
+        O CÓDIGO FONTE DA URNA FOI ALTERADO.
+        --------------------------------------
+        `)
             }
         })
     })
