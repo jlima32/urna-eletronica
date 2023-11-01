@@ -137,21 +137,31 @@ function urnaEletronica() {
         console.log(`Horário em que a votação foi iniciada: ${horaInicio}`);
         console.log("===========================");
         if (totalVotos > 0){
-            if(candidato1 > candidato2 && candidato1 > candidato3){
+            if(candidato1 > candidato2 && candidato1 > candidato3 && candidato1 > candidato4 && candidato1 > candidato5){
                 const candidatoVencedor = candidato1;
                 const totalVencedorBrancos = candidatoVencedor + brancos;
                 const porcentagemVencedorBrancos = (totalVencedorBrancos / totalVotos) * 100;
                 console.log(`O vencedor foi o candidato ${candidatos[0][1]} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
-            }else if(candidato2 > candidato1 && candidato2 > candidato3){
+            }else if(candidato2 > candidato1 && candidato2 > candidato3 && candidato2 > candidato4 && candidato2 > candidato5){
                 const candidatoVencedor = candidato2;
                 const totalVencedorBrancos = candidatoVencedor + brancos;
                 const porcentagemVencedorBrancos = (totalVencedorBrancos / totalVotos) * 100;
                 console.log(`O vencedor foi o candidato ${candidatos[1][1]} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
-            }else if(candidato3 > candidato1 && candidato3 > candidato2){
+            }else if(candidato3 > candidato1 && candidato3 > candidato2 && candidato3 > candidato4 && candidato3 > candidato5){
                 const candidatoVencedor = candidato3;
                 const totalVencedorBrancos = candidatoVencedor + brancos;
                 const porcentagemVencedorBrancos = (totalVencedorBrancos / totalVotos) * 100;
                 console.log(`O vencedor foi o candidato ${candidatos[2][1]} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
+            }else if(candidato4 > candidato1 && candidato4 > candidato2 && candidato4 > candidato3 && candidato4 > candidato5){
+                const candidatoVencedor = candidato4;
+                const totalVencedorBrancos = candidatoVencedor + brancos;
+                const porcentagemVencedorBrancos = (totalVencedorBrancos / totalVotos) * 100;
+                console.log(`O vencedor foi o candidato ${candidatos[3][1]} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
+            }else if(candidato5 > candidato1 && candidato5 > candidato2 && candidato5 > candidato3 && candidato5 > candidato4){
+                const candidatoVencedor = candidato5;
+                const totalVencedorBrancos = candidatoVencedor + brancos;
+                const porcentagemVencedorBrancos = (totalVencedorBrancos / totalVotos) * 100;
+                console.log(`O vencedor foi o candidato ${candidatos[4][1]} com um total de ${totalVencedorBrancos} votos e uma porcentagem de ${porcentagemVencedorBrancos.toFixed(2)}% (somado os votos em branco)`);
             }else{
                 console.log(`A votação terminou empatada`);
             }
