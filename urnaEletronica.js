@@ -17,7 +17,7 @@ async function lerJson(){
     }
     setTimeout(() => {
         urnaEletronica()
-      }, 500);
+      }, 200);
      
 }
 
