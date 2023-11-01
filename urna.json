@@ -1,0 +1,39 @@
+{
+    "candidatos": 
+    [
+        {
+            "codigo": "13",
+            "nome": "Juan"
+        },
+        {
+            "codigo": "22",
+            "nome": "Nunes"
+        },
+        {
+            "codigo": "37",
+            "nome": "Alejandra"
+        },
+        {
+            "codigo": "44",
+            "nome": "Carlos"
+        },
+        {
+            "codigo": "57",
+            "nome": "Marcio"
+        },
+        {
+            "codigo": "00",
+            "nome": "Em Branco"
+        }
+    ],
+
+
+    "configuracao":
+    [
+        {
+            "senha": "123456"
+        }
+    ]
+
+
+}
