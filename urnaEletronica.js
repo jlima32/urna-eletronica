@@ -160,6 +160,7 @@ async function urnaEletronica() {
                     `)){
                         nulos++
                         console.log(msgSucesso);
+                        await audio();
                     }
                 
                 }
