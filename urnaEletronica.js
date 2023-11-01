@@ -21,8 +21,9 @@ async function lerJson(){
      
 }
 
-async function listCandidatos(){
-    
+async function audio(){
+    const audio = new Audio('./confirmacao.mp3');
+    await audio.play();
 }
 
     
@@ -53,7 +54,7 @@ async function listCandidatos(){
 
 
 
-function urnaEletronica() {
+async function urnaEletronica() {
     // let rowCandidatos = document.getElementById('candidatos');
     
     let candidatos = candidatosData;
@@ -85,6 +86,7 @@ function urnaEletronica() {
                     `)){
                         candidato1++
                         console.log(msgSucesso);
+                        await audio();
                     }
                 }else if(voto == candidatos[1].codigo){
                     if (confirm(`
@@ -94,6 +96,7 @@ function urnaEletronica() {
                     `)){
                         candidato2++
                         console.log(msgSucesso);
+                        await audio();
                     }
                 }else if(voto == candidatos[2].codigo){
                     if (confirm(`
@@ -103,6 +106,7 @@ function urnaEletronica() {
                     `)){
                         candidato3++
                         console.log(msgSucesso);
+                        await audio();
                     }
                 }else if(voto == candidatos[3].codigo){
                     if (confirm(`
@@ -112,6 +116,7 @@ function urnaEletronica() {
                     `)){
                         candidato4++
                         console.log(msgSucesso);
+                        await audio();
                     }
                 }else if(voto == candidatos[4].codigo){
                     if (confirm(`
@@ -121,6 +126,7 @@ function urnaEletronica() {
                     `)){
                         candidato5++
                         console.log(msgSucesso);
+                        await audio();
                     }
                 }else if(voto == '00'){
                     if (confirm(`
@@ -130,6 +136,7 @@ function urnaEletronica() {
                     `)){
                         brancos++
                         console.log(msgSucesso);
+                        await audio();
                     }
                 }else if(voto == senhaMesario){
                     encerrar = prompt("Digite S para encerrar e N para continuar a votação");
