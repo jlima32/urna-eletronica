@@ -2,6 +2,8 @@
 let senhaMesario;
 let candidatosData;
 
+
+
 async function lerJson(){
 
    await fetch('./urna.json')
@@ -15,11 +17,47 @@ async function lerJson(){
     for(i = 0; i < candidatosData.length; i++){
         document.getElementById('candidatos').innerHTML += `<p>${candidatosData[i].codigo} - ${candidatosData[i].nome}`;
     }
+    
+    
     setTimeout(() => {
-        urnaEletronica()
-      }, 200);
+        testeJson()
+     }, 200);
      
 }
+
+  async function testeJson(){
+
+    let votacao = false;
+        
+    while(votacao == false){
+
+        let voto = prompt('digite seu voto: ')
+
+        if (voto == senhaMesario){
+            votacao = true
+        }else{
+            let votos = candidatosData.find(e => e.codigo === voto)
+                if (votos !== undefined){
+                    if (confirm(`
+                    Seu voto foi: ${votos.nome}
+                    Ok: para confirmar
+                    Cancelar: para votar novamente
+                    `)){
+                        votos.votos += 1;
+                        console.log('voto ok!');
+                        await audio();
+                    }
+                }else{
+                    console.log('NULO!!!!')
+                }  
+        }
+    }
+
+    console.log('fim!!')
+    console.log(candidatosData);
+
+}
+
 
 async function audio(){
     const audio = new Audio('./confirmacao.mp3');

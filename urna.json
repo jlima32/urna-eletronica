@@ -3,27 +3,33 @@
     [
         {
             "codigo": "13",
-            "nome": "Juan"
+            "nome": "Juan",
+            "votos": 0
         },
         {
             "codigo": "22",
-            "nome": "Nunes"
+            "nome": "Nunes",
+            "votos": 0
         },
         {
             "codigo": "37",
-            "nome": "Alejandra"
+            "nome": "Alejandra",
+            "votos": 0
         },
         {
             "codigo": "44",
-            "nome": "Carlos"
+            "nome": "Carlos",
+            "votos": 0
         },
         {
             "codigo": "57",
-            "nome": "Marcio"
+            "nome": "Marcio",
+            "votos": 0
         },
         {
             "codigo": "00",
-            "nome": "Em Branco"
+            "nome": "Em Branco",
+            "votos": 0
         }
     ],
 
