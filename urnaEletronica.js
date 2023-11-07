@@ -49,14 +49,19 @@ async function urnaEletronica(){
     const horaInicio = data();
     let horaFim;
     let votacao = false;
+    const msgSucesso = 'Voto computado com sucesso!';
         
     while(votacao == false){
 
         let voto = prompt('digite seu voto: ')
 
         if (voto == senhaMesario){
-            votacao = true
-            horaFim = data();
+            if(confirm(`Deseja encerrar a votação ?
+            ok: para encerrar
+            cancelar: para continuar`)){
+                votacao = true
+                horaFim = data();
+            }       
         }else if(voto == "00"){
             let votos = brancosNulos.find(e => e.codigo === voto);
                     if (confirm(`
@@ -65,7 +70,7 @@ async function urnaEletronica(){
                     Cancelar: para votar novamente
                     `)){
                         votos.votos += 1;
-                        console.log('voto ok!');
+                        console.log(msgSucesso);
                         await audio();
                     }
         }else{
@@ -77,7 +82,7 @@ async function urnaEletronica(){
                     Cancelar: para votar novamente
                     `)){
                         votos.votos += 1;
-                        console.log('voto ok!');
+                        console.log(msgSucesso);
                         await audio();
                     }
                 }else{
@@ -88,7 +93,7 @@ async function urnaEletronica(){
                     Cancelar: para votar novamente
                     `)){
                         votos.votos += 1;
-                        console.log('voto ok!');
+                        console.log(msgSucesso);
                         await audio();
                     }
                 }  
@@ -133,10 +138,10 @@ async function urnaEletronica(){
       }
       console.log("===========================");
       for(i = 0; i < fimVotacao.length; i++){
-        console.log(`Votos ${fimVotacao[i].nome}: ${fimVotacao[i].votos} || ${((fimVotacao[i].votos / totalVotosApurados)*100).toFixed(2)}%`)
+        console.log(`${fimVotacao[i].nome}: ${fimVotacao[i].votos} || ${((fimVotacao[i].votos / totalVotosApurados)*100).toFixed(2)}%`)
       }
       for(i = 0; i < brancosNulos.length; i++){
-        console.log(`Votos ${brancosNulos[i].nome}: ${brancosNulos[i].votos} || ${((brancosNulos[i].votos / totalVotosApurados)*100).toFixed(2)}%`)
+        console.log(`${brancosNulos[i].nome}: ${brancosNulos[i].votos} || ${((brancosNulos[i].votos / totalVotosApurados)*100).toFixed(2)}%`)
       }
       console.log("============================");
       console.log(`Horário final da votação: ${horaFim}`);
