@@ -139,7 +139,7 @@ async function urnaEletronica(){
         console.log(`Votos ${brancosNulos[i].nome}: ${brancosNulos[i].votos} || ${((brancosNulos[i].votos / totalVotosApurados)*100).toFixed(2)}%`)
       }
       console.log("============================");
-      console.log(`Horário final da votação: ${await horaFim}`);
+      console.log(`Horário final da votação: ${horaFim}`);
       console.log("===========================");
 
       verificarUrna();
