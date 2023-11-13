@@ -1,13 +1,9 @@
-function dadosLocalStorage() {
-    localStorage.setItem("dadosUrna", JSON.stringify(pessoas));
-}
-
-let senhaMesario;
-let candidatosData;
 let dadosCandidatos;
-let brancosNulos;
 let votacaoAtual = 0;
 let voto = 0;
+let confirmacao;
+
+candidatos();
 
 async function candidatos(){
     await fetch('./urna.json')
@@ -15,8 +11,7 @@ async function candidatos(){
         .then(data => {
             dadosCandidatos = data.votacao;
         })
-    votar() 
-    dadosLocalStorage()
+    dadosLocalStorage();
 }
 
 function dadosLocalStorage() {
@@ -24,10 +19,107 @@ function dadosLocalStorage() {
 }
 
 
+async function votacao(){
+    getLocalStorage = JSON.parse(localStorage.getItem("dadosUrna"));
+    voto = prompt(`
+    Votando para: ${getLocalStorage[votacaoAtual].cargo}
+    Digite o número do candidato:
+    `);
+
+    if(voto == "00"){
+        let votos = getLocalStorage[votacaoAtual].outros.find(e => e.codigo === voto);
+                if (confirm(`
+                Votando para: ${getLocalStorage[votacaoAtual].cargo}
+                Voto em Branco
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    votos.votos += 1;
+                    await audio();
+                    confirmacao = true;
+                }else{
+                    confirmacao = false;
+                }
+                await confirma();  
+    }else{
+        let votos = getLocalStorage[votacaoAtual].candidatos.find(e => e.codigo === voto)
+            if (votos !== undefined){
+                if (confirm(`
+                Votando para: ${getLocalStorage[votacaoAtual].cargo}
+                Seu voto foi: ${votos.nome}
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    votos.votos += 1;
+                    console.log(votos.votos)
+                    await audio();
+                    confirmacao = true;
+                }else{
+                    confirmacao = false;
+                }
+                await confirma();  
+            }else{
+                
+                if (voto == 123456){
+                     fimVotacao();
+                }else{
+                    let votos = getLocalStorage[votacaoAtual].outros.find(e => e.codigo === "99");
+                if (confirm(`
+                Votando para: ${getLocalStorage[votacaoAtual].cargo}
+                Seu voto vai ser anulado
+                Ok: para confirmar
+                Cancelar: para votar novamente
+                `)){
+                    votos.votos += 1;
+                    await audio();
+                    confirmacao = true;
+                }else{
+                    confirmacao = false;
+                }
+                await confirma();   
+                }
+
+                
+            }  
+    }
+}
+
+
+function fimVotacao(){
+    votacaoAtual = 0;
+    
+    for(i=0; i < dadosCandidatos.length;i++){
+         let dadosFinais = getLocalStorage[i].candidatos.sort((a, b) => {
+            if (a.votos > b.votos) {
+            return -1;
+            }
+        
+      });
+      console.log(dadosFinais);
+    }
+
+}
+
+
+async function confirma(){
+    if (confirmacao){
+        votacaoAtual++;
+        localStorage.setItem("dadosUrna", JSON.stringify(getLocalStorage));
+        if (getLocalStorage[votacaoAtual] == undefined){
+            votacaoAtual = 0;
+        }
+    }else{
+        localStorage.setItem("dadosUrna", JSON.stringify(getLocalStorage));
+        console.log(getLocalStorage)
+    }
+    votacao();                 
+}
+
 async function votar(){
         getLocalStorage = JSON.parse(localStorage.getItem("dadosUrna"));
-
-        for (i=0; i < getLocalStorage.length; i++){
+        i = 0;
+        while (i < getLocalStorage.length) 
+        {
             voto = prompt('digite um numero');
             if(voto == "00"){
                 let votos = getLocalStorage[i].outros.find(e => e.codigo === voto);
@@ -37,24 +129,39 @@ async function votar(){
                         Cancelar: para votar novamente
                         `)){
                             votos.votos += 1;
-                            console.log('ok');
                             await audio();
+                        }else{
+                            console.log('de novo')
                         }
             }else{
-                let votos = getLocalStorage[i].candidatos.find(e => e.codigo === voto)
+                let votos = getLocalStorage[votacaoAtual].candidatos.find(e => e.codigo === voto)
                     if (votos !== undefined){
                         if (confirm(`
+                        Votando para: ${getLocalStorage[votacaoAtual].cargo}
                         Seu voto foi: ${votos.nome}
                         Ok: para confirmar
                         Cancelar: para votar novamente
                         `)){
                             votos.votos += 1;
                             console.log(votos.votos)
-                            console.log('ok');
+                            await audio();
+                            confirmacao = true;
+                        }else{
+                            confirmacao = false;
+                        }
+                    }else{
+                        let votos = getLocalStorage[i].outros.find(e => e.codigo === "99");
+                        if (confirm(`
+                        Seu voto vai ser anulado
+                        Ok: para confirmar
+                        Cancelar: para votar novamente
+                        `)){
+                            votos.votos += 1;
                             await audio();
                         }
-                    }
+                    }  
             }
+            i++
         }
 
         localStorage.setItem("dadosUrna", JSON.stringify(getLocalStorage));
