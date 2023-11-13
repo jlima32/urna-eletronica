@@ -2,14 +2,16 @@ let dadosCandidatos;
 let votacaoAtual = 0;
 let voto = 0;
 let confirmacao;
-
+let horaInicio;
+let horaFim;
+let getLocalStorage;
 candidatos();
-
 async function candidatos(){
     await fetch('./urna.json')
         .then(response => response.json())
         .then(data => {
             dadosCandidatos = data.votacao;
+            senhaMesario = data.configuracao[0].senha;
         })
     dadosLocalStorage();
 }
@@ -20,6 +22,7 @@ function dadosLocalStorage() {
 
 
 async function votacao(){
+    horaInicio = data();
     getLocalStorage = JSON.parse(localStorage.getItem("dadosUrna"));
     voto = prompt(`
     Votando para: ${getLocalStorage[votacaoAtual].cargo}
@@ -35,6 +38,7 @@ async function votacao(){
                 Cancelar: para votar novamente
                 `)){
                     votos.votos += 1;
+                    console.log('voto computado com sucesso!')
                     await audio();
                     confirmacao = true;
                 }else{
@@ -51,7 +55,7 @@ async function votacao(){
                 Cancelar: para votar novamente
                 `)){
                     votos.votos += 1;
-                    console.log(votos.votos)
+                    console.log('voto computado com sucesso!')
                     await audio();
                     confirmacao = true;
                 }else{
@@ -60,8 +64,11 @@ async function votacao(){
                 await confirma();  
             }else{
                 
-                if (voto == 123456){
+                if (voto == senhaMesario){
+                    console.clear();
+                    
                      fimVotacao();
+                     
                 }else{
                     let votos = getLocalStorage[votacaoAtual].outros.find(e => e.codigo === "99");
                 if (confirm(`
@@ -71,6 +78,7 @@ async function votacao(){
                 Cancelar: para votar novamente
                 `)){
                     votos.votos += 1;
+                    console.log('voto computado com sucesso!')
                     await audio();
                     confirmacao = true;
                 }else{
@@ -84,18 +92,58 @@ async function votacao(){
     }
 }
 
+function totalVotos(array){
+    let total = 0;
+    for (n = 0; n< array.length; n++){
+        total += array[n].votos;
+    }
+    return total;
+}
 
-function fimVotacao(){
+
+
+async function fimVotacao(){
     votacaoAtual = 0;
+    let dadosFinais;
+    console.log("============================");
+    console.log("BOLETIM DE URNA");
+    console.log("============================");
+    console.log(`Horário em que a votação foi iniciada: ${horaInicio}`);
+    console.log("============================");
+    
     
     for(i=0; i < dadosCandidatos.length;i++){
-         let dadosFinais = getLocalStorage[i].candidatos.sort((a, b) => {
+         let dadosFinaisOutros = getLocalStorage[i].outros;
+         dadosFinais = getLocalStorage[i].candidatos.sort((a, b) => {
             if (a.votos > b.votos) {
             return -1;
-            }
-        
-      });
-      console.log(dadosFinais);
+        }
+    });
+        let totalVotosNominais = totalVotos(dadosFinais);
+        let totalVotosBrancosNulos = totalVotos(dadosFinaisOutros);
+        let totalVotosApurados = totalVotosNominais + totalVotosBrancosNulos;
+        let totalVotosVencedor = dadosFinais[0].votos + totalVotosBrancosNulos
+
+      console.log(`RESULTADO FINAL DA VOTAÇÃO PARA ${getLocalStorage[i].cargo}`);
+      console.log("===========================");
+      console.log(`Total de Votos: ${totalVotosApurados}`);
+      console.log("===========================");
+      if (dadosFinais[0].votos > dadosFinais[1].votos){
+        console.log(`O vencedor foi o candidato ${dadosFinais[0].nome} com um total de ${totalVotosVencedor} votos e uma porcentagem de ${((totalVotosVencedor / totalVotosApurados)*100).toFixed(2)}% (somado os votos em branco).`)
+      }else{
+        console.log(`
+        A votação terminou empatada.
+        `)
+      }
+      console.log("===========================");
+      for(j = 0; j < dadosFinais.length; j++){
+        console.log(`${dadosFinais[j].nome}: ${dadosFinais[j].votos} || ${((dadosFinais[j].votos / totalVotosApurados)*100).toFixed(2)}%`)
+      }
+      for(j = 0; j < dadosFinaisOutros.length; j++){
+        console.log(`${dadosFinaisOutros[j].nome}: ${dadosFinaisOutros[j].votos} || ${((dadosFinaisOutros[j].votos / totalVotosApurados)*100).toFixed(2)}%`)
+      }
+      console.log("============================");
+      console.log(`Horário final da votação: ${horaFim}`);
     }
 
 }
@@ -110,66 +158,10 @@ async function confirma(){
         }
     }else{
         localStorage.setItem("dadosUrna", JSON.stringify(getLocalStorage));
-        console.log(getLocalStorage)
     }
     votacao();                 
 }
 
-async function votar(){
-        getLocalStorage = JSON.parse(localStorage.getItem("dadosUrna"));
-        i = 0;
-        while (i < getLocalStorage.length) 
-        {
-            voto = prompt('digite um numero');
-            if(voto == "00"){
-                let votos = getLocalStorage[i].outros.find(e => e.codigo === voto);
-                        if (confirm(`
-                        Voto em Branco
-                        Ok: para confirmar
-                        Cancelar: para votar novamente
-                        `)){
-                            votos.votos += 1;
-                            await audio();
-                        }else{
-                            console.log('de novo')
-                        }
-            }else{
-                let votos = getLocalStorage[votacaoAtual].candidatos.find(e => e.codigo === voto)
-                    if (votos !== undefined){
-                        if (confirm(`
-                        Votando para: ${getLocalStorage[votacaoAtual].cargo}
-                        Seu voto foi: ${votos.nome}
-                        Ok: para confirmar
-                        Cancelar: para votar novamente
-                        `)){
-                            votos.votos += 1;
-                            console.log(votos.votos)
-                            await audio();
-                            confirmacao = true;
-                        }else{
-                            confirmacao = false;
-                        }
-                    }else{
-                        let votos = getLocalStorage[i].outros.find(e => e.codigo === "99");
-                        if (confirm(`
-                        Seu voto vai ser anulado
-                        Ok: para confirmar
-                        Cancelar: para votar novamente
-                        `)){
-                            votos.votos += 1;
-                            await audio();
-                        }
-                    }  
-            }
-            i++
-        }
-
-        localStorage.setItem("dadosUrna", JSON.stringify(getLocalStorage));
-        console.log(getLocalStorage)
-        
-
-    
-}
 
 async function urnaEletronica(){
 
@@ -298,14 +290,7 @@ async function urnaEletronica(){
       console.log("===========================");
       console.log(`Total de Votos: ${totalVotosApurados}`);
       console.log("===========================");
-      if (fimVotacao[0].votos > fimVotacao[1].votos && fimVotacao[0].votos > fimVotacao[1].votos){
-        console.log(`O vencedor foi o candidato ${fimVotacao[0].nome} com um total de ${totalVotosVencedor} votos e uma porcentagem de ${((totalVotosVencedor / totalVotosApurados)*100).toFixed(2)}% (somado os votos em branco).`)
-      }else{
-        console.log(`
-        A votação terminou empatada.
-        `)
-      }
-      console.log("===========================");
+
       for(i = 0; i < fimVotacao.length; i++){
         console.log(`${fimVotacao[i].nome}: ${fimVotacao[i].votos} || ${((fimVotacao[i].votos / totalVotosApurados)*100).toFixed(2)}%`)
       }

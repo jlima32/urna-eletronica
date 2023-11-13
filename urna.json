@@ -14,6 +14,15 @@
                 "votos": 0
             },
             {
+                "codigo": "44",
+                "nome": "Superman",
+                "vice": "",
+                "partido": "PHS",
+                "coligacao": "Unidos Por São Paulo",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2014/BR/SP/680/250000002925/220154600116.jpg",
+                "votos": 0
+            },
+            {
                 "codigo": "70",
                 "nome": "Ademir Lopes",
                 "vice": "",
