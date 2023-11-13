@@ -1,6 +1,68 @@
+function dadosLocalStorage() {
+    localStorage.setItem("dadosUrna", JSON.stringify(pessoas));
+}
+
 let senhaMesario;
 let candidatosData;
+let dadosCandidatos;
 let brancosNulos;
+let votacaoAtual = 0;
+let voto = 0;
+
+async function candidatos(){
+    await fetch('./urna.json')
+        .then(response => response.json())
+        .then(data => {
+            dadosCandidatos = data.votacao;
+        })
+    votar() 
+    dadosLocalStorage()
+}
+
+function dadosLocalStorage() {
+    localStorage.setItem("dadosUrna", JSON.stringify(dadosCandidatos));
+}
+
+
+async function votar(){
+        getLocalStorage = JSON.parse(localStorage.getItem("dadosUrna"));
+
+        for (i=0; i < getLocalStorage.length; i++){
+            voto = prompt('digite um numero');
+            if(voto == "00"){
+                let votos = getLocalStorage[i].outros.find(e => e.codigo === voto);
+                        if (confirm(`
+                        Voto em Branco
+                        Ok: para confirmar
+                        Cancelar: para votar novamente
+                        `)){
+                            votos.votos += 1;
+                            console.log('ok');
+                            await audio();
+                        }
+            }else{
+                let votos = getLocalStorage[i].candidatos.find(e => e.codigo === voto)
+                    if (votos !== undefined){
+                        if (confirm(`
+                        Seu voto foi: ${votos.nome}
+                        Ok: para confirmar
+                        Cancelar: para votar novamente
+                        `)){
+                            votos.votos += 1;
+                            console.log(votos.votos)
+                            console.log('ok');
+                            await audio();
+                        }
+                    }
+            }
+        }
+
+        localStorage.setItem("dadosUrna", JSON.stringify(getLocalStorage));
+        console.log(getLocalStorage)
+        
+
+    
+}
 
 async function urnaEletronica(){
 
