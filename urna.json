@@ -14,12 +14,12 @@
                 "votos": 0
             },
             {
-                "codigo": "44",
-                "nome": "Superman",
+                "codigo": "12",
+                "nome": "Abner Tofanelli",
                 "vice": "",
-                "partido": "PHS",
+                "partido": "PDT",
                 "coligacao": "Unidos Por São Paulo",
-                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2014/BR/SP/680/250000002925/220154600116.jpg",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/SP/546/candidatos/250001643732/foto_1661808721349.jpg",
                 "votos": 0
             },
             {
@@ -29,6 +29,24 @@
                 "partido": "PT do B",
                 "coligacao": "Projeto Vitória",
                 "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2014/BR/SP/680/250000000092/115638950141.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "44",
+                "nome": "Abbou Anni",
+                "vice": "",
+                "partido": "União",
+                "coligacao": "União Brasil",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/SP/546/candidatos/892543/foto.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "43",
+                "nome": "Adalberto Maluf",
+                "vice": "",
+                "partido": "PV",
+                "coligacao": "Projeto Vitória",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/SP/546/candidatos/899990/foto.jpg",
                 "votos": 0
             }
                     ],
@@ -47,6 +65,7 @@
                 ]
                 
         },
+
         {
             "cargo": "Deputado Estadual",
             "candidatos": [
@@ -67,6 +86,33 @@
                 "coligacao": "Agora é a Vez Do Povo",
                 "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2014/BR/SE/680/260000000188/001861532100.jpg",
                 "votos": 0
+            },
+            {
+                "codigo": "13",
+                "nome": "Adriane Quilombola",
+                "vice": "",
+                "partido": "PT",
+                "coligacao": "Brasil da Esperança",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/MS/546/candidatos/906096/foto.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "45",
+                "nome": "Candinha do Paradesporto",
+                "vice": "",
+                "partido": "PSDB",
+                "coligacao": "Cidadania Brasil",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/MS/546/candidatos/901077/foto.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "43",
+                "nome": "Gerson Claro",
+                "vice": "",
+                "partido": "PV",
+                "coligacao": "Projeto Vitória",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/MS/546/candidatos/909190/foto.jpg",
+                "votos": 0
             }
                     ],
                     "outros":
@@ -83,7 +129,8 @@
                         }
                     ]
                     
-            },
+        },
+
         {
             "cargo": "Senador",
             "candidatos": [
@@ -104,6 +151,33 @@
                 "coligacao": "Participação Popular 1",
                 "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2014/BR/GO/680/90000001190/030824481066.jpg",
                 "votos": 0
+            },
+            {
+                "codigo": "11",
+                "nome": "Camila Soares",
+                "vice": "",
+                "partido": "AVANTE",
+                "coligacao": "Brasil nos Trilhos",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/MG/546/candidatos/914060/foto.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "28",
+                "nome": "Virgílio Guimarães",
+                "vice": "",
+                "partido": "PRTB",
+                "coligacao": "Renovação e Transparência",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/MG/546/candidatos/918448/foto.jpeg",
+                "votos": 0
+            },
+            {
+                "codigo": "45",
+                "nome": "Victoria Melo",
+                "vice": "",
+                "partido": "PSDB",
+                "coligacao": "Cidadania Brasil",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/MG/546/candidatos/914638/foto.jpg",
+                "votos": 0
             }
                     ],
                     "outros":
@@ -120,26 +194,59 @@
                         }
                     ]
                     
-            },
+        },
+
         {
             "cargo": "Governador",
             "candidatos": [
             {
                 "codigo": "45",
                 "nome": "Capitã Michele",
-                "vice": "",
+                "vice": "Ana Paula",
+                "imgVice": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/AP/546/candidatos/883475/foto.jpg",
                 "partido": "PSDB",
-                "coligacao": "Garantia de Um Futuro Melhor",
+                "coligacao": "Cidadania Brasil",
                 "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2014/BR/GO/680/90000001169/042703781066.jpg",
                 "votos": 0
             },
             {
                 "codigo": "22",
                 "nome": "Dom Bosco",
-                "vice": "",
+                "vice": "Domiciano Cabral",
+                "imgVice": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/PB/546/candidatos/898998/foto.jpg",
                 "partido": "PR",
                 "coligacao": "União e Força",
                 "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2014/BR/DF/680/70000000670/039488090388.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "50",
+                "nome": "Adjany Simplicio",
+                "vice": "Lucas Ribeiro",
+                "imgVice": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/PB/546/candidatos/903242/foto.jpg",
+                "partido": "PSOL",
+                "coligacao": "Frente de Esquerda",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/PB/546/candidatos/150001635959/foto_1661970004047.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "28",
+                "nome": "Major Fábio",
+                "vice": "Artur Bolinha",
+                "imgVice": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/PB/546/candidatos/914716/foto.jpg",
+                "partido": "PRTB",
+                "coligacao": "Renovação e Transparência",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/PB/546/candidatos/911828/foto.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "43",
+                "nome": "Veneziano",
+                "vice": "Alice Maciel",
+                "imgVice": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/PB/546/candidatos/885261/foto.JPG",
+                "partido": "PV",
+                "coligacao": "Projeto Vitória",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/PB/546/candidatos/906915/foto.jpg",
                 "votos": 0
             }
                     ],
@@ -157,7 +264,8 @@
                         }
                     ]
                     
-            },
+        },
+
         {
             "cargo": "Presidente",
             "candidatos": [
@@ -165,6 +273,7 @@
                 "codigo": "29",
                 "nome": "Adriana França",
                 "vice": "",
+                "imgVice": "",
                 "partido": "PHS",
                 "coligacao": "Frente Trabalhista Solidária",
                 "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2014/BR/RJ/680/190000001932/085867970370.jpg",
@@ -174,9 +283,40 @@
                 "codigo": "28",
                 "nome": "Alciones de Rio Preto",
                 "vice": "",
+                "imgVice": "",
                 "partido": "PRTB",
                 "coligacao": "Renovação e Transparência",
                 "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2014/BR/RJ/680/190000002749/048893140353.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "43",
+                "nome": "Adilson Buzzi",
+                "vice": "Georgia Micheletti",
+                "imgVice": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/AC/546/candidatos/902012/foto.jpeg",
+                "partido": "PV",
+                "coligacao": "Projeto Vitória",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/SC/546/candidatos/919180/foto.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "44",
+                "nome": "Fernando Zamora",
+                "vice": "Delegada Marilisa",
+                "imgVice": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/SC/546/candidatos/898552/foto.jpeg",
+                "partido": "UNIÃO",
+                "coligacao": "União Brasil",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/AC/546/candidatos/913609/foto.jpg",
+                "votos": 0
+            },
+            {
+                "codigo": "11",
+                "nome": "Mailza",
+                "vice": "Jorgiene Carneiro",
+                "imgVice": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/AC/546/candidatos/886845/foto.jpg",
+                "partido": "AVANTE",
+                "coligacao": "Brasil nos Trilhos",
+                "img": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/AC/546/candidatos/904232/foto.jpg",
                 "votos": 0
             }
                 ],
@@ -195,21 +335,9 @@
                 ]
                 
         }
+
     ],
 
-    "outros":
-    [
-        {
-            "codigo": "00",
-            "nome":"Brancos",
-            "votos": 0
-        },
-        {
-            "codigo": "99",
-            "nome": "Nulos",
-            "votos": 0
-        }
-    ],
 
     "configuracao":
     [

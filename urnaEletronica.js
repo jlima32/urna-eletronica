@@ -2,10 +2,17 @@ let dadosCandidatos;
 let votacaoAtual = 0;
 let voto = 0;
 let confirmacao;
-let horaInicio;
+let horaInicio = new Date().toLocaleString().replace(',', ' -');
 let getLocalStorage;
-let dataFim;
+
 candidatos();
+
+async function data(){
+    const dataAtual = new Date().toLocaleString();
+    const data = dataAtual.replace(',', ' -')
+    return data;
+}
+
 async function candidatos(){
     await fetch('./urna.json')
         .then(response => response.json())
@@ -20,9 +27,7 @@ function dadosLocalStorage() {
     localStorage.setItem("dadosUrna", JSON.stringify(dadosCandidatos));
 }
 
-
 async function votacao(){
-    horaInicio = await data();
     getLocalStorage = JSON.parse(localStorage.getItem("dadosUrna"));
     voto = prompt(`
     Votando para: ${getLocalStorage[votacaoAtual].cargo}
@@ -66,7 +71,6 @@ async function votacao(){
                 
                 if (voto == senhaMesario){
                     console.clear();
-                    dataFim = await data();
                      fimVotacao();
                      
                 }else{
@@ -92,6 +96,24 @@ async function votacao(){
     }
 }
 
+async function confirma(){
+    if (confirmacao){
+        votacaoAtual++;
+        localStorage.setItem("dadosUrna", JSON.stringify(getLocalStorage));
+        if (getLocalStorage[votacaoAtual] == undefined){
+            votacaoAtual = 0;
+        }
+    }else{
+        localStorage.setItem("dadosUrna", JSON.stringify(getLocalStorage));
+    }
+    votacao();                 
+}
+
+async function audio(){
+    const audio = new Audio('./confirmacao.mp3');
+    await audio.play();
+}
+
 function totalVotos(array){
     let total = 0;
     for (n = 0; n< array.length; n++){
@@ -99,8 +121,6 @@ function totalVotos(array){
     }
     return total;
 }
-
-
 
 async function fimVotacao(){
     votacaoAtual = 0;
@@ -131,7 +151,7 @@ async function fimVotacao(){
       console.log(`Total de Votos: ${totalVotosApurados}`);
       console.log("===========================");
       if (dadosFinais[0].votos > dadosFinais[1].votos){
-        console.log(`O vencedor foi o candidato ${dadosFinais[0].nome} com um total de ${totalVotosVencedor} votos e uma porcentagem de ${((totalVotosVencedor / totalVotosApurados)*100).toFixed(2)}% (somado os votos em branco).`)
+        console.log(`O vencedor foi o candidato ${dadosFinais[0].nome} (${dadosFinais[0].partido}) com um total de ${totalVotosVencedor} votos e uma porcentagem de ${((totalVotosVencedor / totalVotosApurados)*100).toFixed(2)}% (somado os votos em branco).`)
       }else{
         console.log(`
         A votação terminou empatada.
@@ -139,42 +159,17 @@ async function fimVotacao(){
       }
       console.log("===========================");
       for(j = 0; j < dadosFinais.length; j++){
-        console.log(`${dadosFinais[j].nome}: ${dadosFinais[j].votos} || ${((dadosFinais[j].votos / totalVotosApurados)*100).toFixed(2)}%`)
+        console.log(`${dadosFinais[j].codigo} - ${dadosFinais[j].nome}: ${dadosFinais[j].votos} || ${((dadosFinais[j].votos / totalVotosApurados)*100).toFixed(2)}%`)
       }
       for(j = 0; j < dadosFinaisOutros.length; j++){
         console.log(`${dadosFinaisOutros[j].nome}: ${dadosFinaisOutros[j].votos} || ${((dadosFinaisOutros[j].votos / totalVotosApurados)*100).toFixed(2)}%`)
       }
-      console.log("============================");
-      console.log(`Horário final da votação: ${dataFim}`);
       console.log("===========================");
     }
-
+        console.log(`Horário final da votação: ${await data()}`);
+        console.log("===========================");
 }
 
-
-async function confirma(){
-    if (confirmacao){
-        votacaoAtual++;
-        localStorage.setItem("dadosUrna", JSON.stringify(getLocalStorage));
-        if (getLocalStorage[votacaoAtual] == undefined){
-            votacaoAtual = 0;
-        }
-    }else{
-        localStorage.setItem("dadosUrna", JSON.stringify(getLocalStorage));
-    }
-    votacao();                 
-}
-
-async function audio(){
-    const audio = new Audio('./confirmacao.mp3');
-    await audio.play();
-}
-
-async function data(){
-    const dataAtual = new Date().toLocaleString();
-    const data = dataAtual.replace(',', ' -')
-    return data;
-}
 function verificarUrna(){
     fetch('./urnaEletronica.js') //lê o arquivo
     .then(response => response.text()) // retorna como string
@@ -201,4 +196,4 @@ function verificarUrna(){
             }
         })
     })
-    } 
+} 
