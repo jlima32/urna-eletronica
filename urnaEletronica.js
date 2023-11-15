@@ -207,6 +207,7 @@ function verificarUrna(){
             }
         })
     })
+    localStorage.clear();
 } 
 
 
