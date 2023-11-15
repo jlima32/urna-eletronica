@@ -236,6 +236,13 @@ function iniciar(){
         </tr>
         `
     }
+    document.querySelector('#candidatos>tbody').innerHTML +=`
+    <tr>
+        <td>Voto em Branco</td>
+        <td>00</td>
+        
+    </tr>
+    `
     setTimeout(() => {
         votacao();
       }, 100);
@@ -266,4 +273,11 @@ function tabelaCandidatos(){
         </tr>
         `
     }
+    document.querySelector('#candidatos>tbody').innerHTML +=`
+    <tr>
+        <td>Voto em Branco</td>
+        <td>00</td>
+        
+    </tr>
+    `
 }
