@@ -3,9 +3,39 @@ let votacaoAtual = 0;
 let voto = 0;
 let confirmacao;
 let horaInicio = new Date().toLocaleString().replace(',', ' -');
-let getLocalStorage;
+let div = document.getElementById('iniciar');
+let getLocalStorage = JSON.parse(localStorage.getItem("dadosUrna"));
 
 candidatos();
+
+function tabelaCandidatos(){
+    if(votacaoAtual == 4){
+        votacaoAtual = -1
+    }
+    document.querySelector('#candidatos').innerHTML = `
+        <thead>
+            <tr>
+            <th></th>
+            <th>Nome</th>
+            <th>Nº</th>
+            <th>Partido</th>
+            <th>Coligação</th>
+            </tr>
+        </thead>
+        <tbody>`;
+    for(i = 0; i < getLocalStorage[votacaoAtual+1].candidatos.length; i++){
+        //document.getElementById('candidatos').innerHTML += `<p>${candidatosData[i].codigo} - ${candidatosData[i].nome}`;
+        document.querySelector('#candidatos>tbody').innerHTML +=`
+        <tr>
+          <td><img src="${getLocalStorage[votacaoAtual+1].candidatos[i].img}" width="48px"></td>
+          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].nome}</td>
+          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].codigo}</td>
+          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].partido}</td>
+          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].coligacao}</td>
+        </tr>
+        `
+    }
+}
 
 async function data(){
     const dataAtual = new Date().toLocaleString();
@@ -28,7 +58,6 @@ function dadosLocalStorage() {
 }
 
 async function votacao(){
-    getLocalStorage = JSON.parse(localStorage.getItem("dadosUrna"));
     voto = prompt(`
     Votando para: ${getLocalStorage[votacaoAtual].cargo}
     Digite o número do candidato:
@@ -42,6 +71,7 @@ async function votacao(){
                 Ok: para confirmar
                 Cancelar: para votar novamente
                 `)){
+                    tabelaCandidatos();
                     votos.votos += 1;
                     console.log('voto computado com sucesso!')
                     await audio();
@@ -59,6 +89,7 @@ async function votacao(){
                 Ok: para confirmar
                 Cancelar: para votar novamente
                 `)){
+                    tabelaCandidatos();
                     votos.votos += 1;
                     console.log('voto computado com sucesso!')
                     await audio();
@@ -81,6 +112,7 @@ async function votacao(){
                 Ok: para confirmar
                 Cancelar: para votar novamente
                 `)){
+                    tabelaCandidatos();
                     votos.votos += 1;
                     console.log('voto computado com sucesso!')
                     await audio();
