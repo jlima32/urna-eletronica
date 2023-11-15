@@ -21,12 +21,17 @@ async function candidatos(){
             dadosCandidatos = data.votacao;
             senhaMesario = data.configuracao[0].senha;
         })
-    dadosLocalStorage();
+        dadosLocalStorage();
 
 }
 
 function dadosLocalStorage() {
-    localStorage.setItem("dadosUrna", JSON.stringify(dadosCandidatos));
+    if(getLocalStorage == null){
+        localStorage.setItem("dadosUrna", JSON.stringify(dadosCandidatos));
+        window.location.reload(true);
+    }
+    
+    
 }
 
 async function votacao(){
