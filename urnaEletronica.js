@@ -8,35 +8,6 @@ let getLocalStorage = JSON.parse(localStorage.getItem("dadosUrna"));
 
 candidatos();
 
-function tabelaCandidatos(){
-    if(votacaoAtual == 4){
-        votacaoAtual = -1
-    }
-    document.querySelector('#candidatos').innerHTML = `
-        <thead>
-            <tr>
-            <th></th>
-            <th>Nome</th>
-            <th>Nº</th>
-            <th>Partido</th>
-            <th>Coligação</th>
-            </tr>
-        </thead>
-        <tbody>`;
-    for(i = 0; i < getLocalStorage[votacaoAtual+1].candidatos.length; i++){
-        //document.getElementById('candidatos').innerHTML += `<p>${candidatosData[i].codigo} - ${candidatosData[i].nome}`;
-        document.querySelector('#candidatos>tbody').innerHTML +=`
-        <tr>
-          <td><img src="${getLocalStorage[votacaoAtual+1].candidatos[i].img}" width="48px"></td>
-          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].nome}</td>
-          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].codigo}</td>
-          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].partido}</td>
-          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].coligacao}</td>
-        </tr>
-        `
-    }
-}
-
 async function data(){
     const dataAtual = new Date().toLocaleString();
     const data = dataAtual.replace(',', ' -')
@@ -51,6 +22,7 @@ async function candidatos(){
             senhaMesario = data.configuracao[0].senha;
         })
     dadosLocalStorage();
+
 }
 
 function dadosLocalStorage() {
@@ -200,6 +172,8 @@ async function fimVotacao(){
     }
         console.log(`Horário final da votação: ${await data()}`);
         console.log("===========================");
+
+        verificarUrna()
 }
 
 function verificarUrna(){
@@ -229,3 +203,61 @@ function verificarUrna(){
         })
     })
 } 
+
+
+function iniciar(){
+    if(votacaoAtual == 4){
+        votacaoAtual = -1
+    }
+    document.querySelector('#candidatos').innerHTML = `
+        <thead>
+            <tr>
+            <th>Nome</th>
+            <th>Nº</th>
+            <th>Partido</th>
+            <th>Coligação</th>
+            </tr>
+        </thead>
+        <tbody>`;
+    for(i = 0; i < getLocalStorage[votacaoAtual].candidatos.length; i++){
+        document.querySelector('#candidatos>tbody').innerHTML +=`
+        <tr>
+          
+          <td>${getLocalStorage[votacaoAtual].candidatos[i].nome}</td>
+          <td>${getLocalStorage[votacaoAtual].candidatos[i].codigo}</td>
+          <td>${getLocalStorage[votacaoAtual].candidatos[i].partido}</td>
+          <td>${getLocalStorage[votacaoAtual].candidatos[i].coligacao}</td>
+        </tr>
+        `
+    }
+    setTimeout(() => {
+        votacao();
+      }, 100);
+}
+
+function tabelaCandidatos(){
+    if(votacaoAtual == 4){
+        votacaoAtual = -1
+    }
+    document.querySelector('#candidatos').innerHTML = `
+        <thead>
+            <tr>
+            <th>Nome</th>
+            <th>Nº</th>
+            <th>Partido</th>
+            <th>Coligação</th>
+            </tr>
+        </thead>
+        <tbody>`;
+    for(i = 0; i < getLocalStorage[votacaoAtual+1].candidatos.length; i++){
+        document.querySelector('#candidatos>tbody').innerHTML +=`
+        <tr>
+          
+          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].nome}</td>
+          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].codigo}</td>
+          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].partido}</td>
+          <td>${getLocalStorage[votacaoAtual+1].candidatos[i].coligacao}</td>
+        </tr>
+        `
+    }
+}
